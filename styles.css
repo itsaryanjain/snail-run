@@ -1,0 +1,225 @@
+:root {
+  --red-900: #3b0b0b;
+  --red-700: #8f1414;
+  --red-500: #d72d2d;
+  --red-300: #ff7a7a;
+  --cream: #f7efe6;
+  --ink: #2b1a1a;
+  --sand: #f1d6c8;
+  --leaf: #2f7f4f;
+  --shadow: rgba(30, 10, 10, 0.2);
+  --glow: rgba(255, 122, 122, 0.5);
+  --radius: 26px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  font-family: "Fraunces", "Bodoni Moda", "Playfair Display", serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #fff6f0 0%, #f7d7d0 35%, #e1a4a4 100%);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.scene {
+  width: min(980px, 100%);
+}
+
+.card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 233, 228, 0.88));
+  border-radius: var(--radius);
+  box-shadow: 0 28px 60px var(--shadow);
+  padding: 32px;
+  display: grid;
+  gap: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.card__header {
+  display: grid;
+  gap: 12px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  color: var(--red-700);
+  font-family: "Space Grotesk", "Inter Tight", sans-serif;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  color: var(--red-900);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  max-width: 42ch;
+  font-family: "Space Grotesk", "Inter Tight", sans-serif;
+}
+
+.playfield {
+  position: relative;
+  height: clamp(320px, 50vh, 480px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 230, 225, 0.35));
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px dashed rgba(215, 45, 45, 0.2);
+}
+
+.trail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.trail span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, rgba(255, 122, 122, 0.7), rgba(255, 122, 122, 0.1));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(0.2px);
+}
+
+.snail {
+  position: absolute;
+  width: 120px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s var(--ease);
+}
+
+.snail__shell {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffd1d1, var(--red-500) 70%, var(--red-700) 100%);
+  top: 0;
+  left: 38px;
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.4), 0 8px 18px rgba(120, 10, 10, 0.3);
+}
+
+.snail__shell::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+}
+
+.snail__body {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  width: 100px;
+  height: 36px;
+  background: linear-gradient(120deg, #f7d9c8, #f2b6a0);
+  border-radius: 24px 32px 32px 24px;
+  box-shadow: inset 0 -4px 8px rgba(144, 90, 90, 0.25);
+}
+
+.snail__body::before {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: -10px;
+  width: 26px;
+  height: 22px;
+  background: linear-gradient(130deg, #f9e2d4, #f2b6a0);
+  border-radius: 16px 16px 10px 10px;
+}
+
+.snail__eye {
+  position: absolute;
+  top: -14px;
+  width: 10px;
+  height: 28px;
+  background: linear-gradient(180deg, #f9e2d4, #e6a391);
+  border-radius: 12px;
+}
+
+.snail__eye--left {
+  left: 16px;
+}
+
+.snail__eye--right {
+  left: 34px;
+}
+
+.snail__eye::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2b1a1a;
+}
+
+.target {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px dashed var(--red-300);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.target.is-active {
+  opacity: 1;
+}
+
+.card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--red-500), var(--red-700));
+  color: white;
+  font-family: "Space Grotesk", "Inter Tight", sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  box-shadow: 0 12px 22px rgba(215, 45, 45, 0.28);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 30px rgba(215, 45, 45, 0.33);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 720px) {
+  .card {
+    padding: 24px;
+  }
+
+  .card__footer {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Snail Trail</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="scene">
+      <section class="card">
+        <header class="card__header">
+          <p class="eyebrow">Slow, steady, and playful</p>
+          <h1>Snail Trail</h1>
+          <p class="subtitle">Drag or tap to send the snail on a gentle journey.</p>
+        </header>
+
+        <div class="playfield" id="playfield" aria-live="polite">
+          <div class="trail" id="trail"></div>
+          <div class="snail" id="snail" role="img" aria-label="A friendly snail">
+            <div class="snail__shell"></div>
+            <div class="snail__body">
+              <span class="snail__eye snail__eye--left"></span>
+              <span class="snail__eye snail__eye--right"></span>
+            </div>
+          </div>
+          <div class="target" id="target" aria-hidden="true"></div>
+        </div>
+
+        <footer class="card__footer">
+          <button class="btn" id="boost">Boost</button>
+          <button class="btn" id="pause">Pause</button>
+          <button class="btn" id="reset">Reset</button>
+        </footer>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
